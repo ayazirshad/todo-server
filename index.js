@@ -9,6 +9,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/task", taskRoutes);
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log("listening to the port", PORT);
 });
