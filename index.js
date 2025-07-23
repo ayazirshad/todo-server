@@ -9,7 +9,7 @@ const port = process.env.PORT || 8080;
 // Setup CORS
 const allowedOrigins = [
   "http://localhost:3000",
-  //   "https://your-frontend-name.vercel.app",
+  "https://todo-frontend-a-project.vercel.app",
 ];
 
 app.use(
