@@ -4,11 +4,11 @@ require("./db/connection");
 const taskRoutes = require("./routes/TaskRoutes");
 const cors = require("cors");
 
-const PORT = 8080;
+const port = process.env.PORT || 8080;
 app.use(cors());
 app.use(express.json());
 app.use("/task", taskRoutes);
 
-app.listen(PORT, () => {
-  console.log("listening to the port", PORT);
+app.listen(port, () => {
+  console.log("listening to the port", port);
 });
