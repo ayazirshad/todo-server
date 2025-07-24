@@ -1,9 +1,9 @@
 const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 const app = express();
 require("./db/connection");
 const taskRoutes = require("./routes/TaskRoutes");
-const cors = require("cors");
-require("dotenv").config();
 
 const port = process.env.PORT || 8080;
 
@@ -24,11 +24,18 @@ app.use(
         /^https:\/\/todo-frontend.*\.vercel\.app$/.test(origin)
       ) {
         return callback(null, true);
-      } else {
-        return callback(new Error("Not allowed by CORS"));
       }
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: [
+      "Origin",
+      "X-Requested-With",
+      "Content-Type",
+      "Accept",
+      "Authorization",
+    ],
   })
 );
 
@@ -43,19 +50,19 @@ app.set("trust proxy", 1);
 //   })
 // );
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.header("Access-Control-Allow-Credentials", "true");
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
+//   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   if (req.method === "OPTIONS") {
+//     return res.sendStatus(200);
+//   }
+//   next();
+// });
 
 // app.use(cors());
 
