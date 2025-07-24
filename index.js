@@ -3,17 +3,18 @@ const app = express();
 require("./db/connection");
 const taskRoutes = require("./routes/TaskRoutes");
 const cors = require("cors");
+require("dotenv").config();
 
 const port = process.env.PORT || 8080;
 
 // Setup CORS
-const allowedOrigins = [
-  "http://localhost:3001",
-  "https://todo-frontend-a-project.vercel.app",
-];
+// const allowedOrigins = [
+//   "http://localhost:3001",
+//   "https://todo-frontend-a-project.vercel.app",
+// ];
 
 app.set("trust proxy", 1);
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: ["*", "https://todo-frontend-flame-one.vercel.app"] }));
 // app.use(
 //   cors({
 //     origin: function (origin, callback) {

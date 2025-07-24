@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 mongoose
   .connect(
     // "mongodb://0.0.0.0:27017/todoList"
-    "mongodb+srv://ayazirshad:Paaswurd58%25%2A@cluster0.9prsg.mongodb.net/"
+    process.env.MONGO_STRING
   )
   .then(() => {
     console.log("connected to db");
