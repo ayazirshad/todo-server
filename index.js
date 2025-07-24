@@ -7,33 +7,36 @@ require("dotenv").config();
 
 const port = process.env.PORT || 8080;
 
-// Setup CORS
-// const allowedOrigins = [
-//   "http://localhost:3001",
-//   "https://todo-frontend-a-project.vercel.app",
-// ];
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://todo-frontend-7dxrnoc3v-a-project.vercel.app",
+];
 
-app.set("trust proxy", 1);
 app.use(
   cors({
-    origin: [
-      "*",
-      "https://todo-frontend-flame-one.vercel.app",
-      "https://todo-frontend-7dxrnoc3v-a-project.vercel.app",
-    ],
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true);
+      if (
+        allowedOrigins.includes(origin) ||
+        /^https:\/\/todo-frontend.*\.vercel\.app$/.test(origin)
+      ) {
+        return callback(null, true);
+      } else {
+        return callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
 );
+
+app.set("trust proxy", 1);
 // app.use(
 //   cors({
-//     origin: function (origin, callback) {
-//       if (!origin) return callback(null, true);
-//       if (allowedOrigins.includes(origin)) {
-//         return callback(null, true);
-//       } else {
-//         return callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     credentials: true,
+//     origin: [
+//       "*",
+//       "https://todo-frontend-flame-one.vercel.app",
+//       "https://todo-frontend-7dxrnoc3v-a-project.vercel.app",
+//     ],
 //   })
 // );
 
