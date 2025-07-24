@@ -44,6 +44,10 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use("/task", taskRoutes);
 
+app.get("/", (req, res) => {
+  res.send("hello from backend");
+});
+
 app.listen(port, () => {
   console.log("listening to the port", port);
 });
