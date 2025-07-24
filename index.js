@@ -10,9 +10,9 @@ const port = process.env.PORT || 8080;
 const allowedOrigins = [
   "http://localhost:3000",
   "https://todo-frontend-7dxrnoc3v-a-project.vercel.app",
-  "https://todo-frontend-git-main-a-project.vercel.app/",
-  "https://todo-frontend-a-project.vercel.app/",
-  "https://todo-frontend-flame-one.vercel.app/",
+  "https://todo-frontend-git-main-a-project.vercel.app",
+  "https://todo-frontend-a-project.vercel.app",
+  "https://todo-frontend-flame-one.vercel.app",
 ];
 
 app.use(
@@ -58,6 +58,7 @@ app.use((req, res, next) => {
 });
 
 // app.use(cors());
+
 app.use(express.json({ limit: "50mb" }));
 app.use("/task", taskRoutes);
 
