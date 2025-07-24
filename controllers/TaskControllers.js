@@ -1,6 +1,7 @@
 const Task = require("../schema/TaskSchema");
 
 const addTask = async (req, res) => {
+  console.log("here");
   try {
     const task = req.body;
     const taskTobeSaved = new Task(task);
